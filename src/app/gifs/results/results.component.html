@@ -1,7 +1,7 @@
 <div class="row">
     <div
         *ngFor="let gif of results"
-        class="col-md-4 col-sm6"
+        class="col-md-4 col-sm6 animate__animated animate__fadeIn"
     >
         <div class="card">
             <img
@@ -11,7 +11,7 @@
             />
             <div class="card-body">
                 <p class="card-text">
-                    {{gif.title}}
+                    {{ gif.title }}
                 </p>
             </div>
         </div>
