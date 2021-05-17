@@ -23,11 +23,13 @@ export class GifsService {
 
   searchGifs( query: string ) {
     query = query.trim().toLocaleLowerCase();
-    if(query.length === 0 || this._history.includes(query)) return;
+    if(query.length === 0) return;
 
-    this._history.unshift(query);
-    this._history = this._history.splice(0,10);
-    localStorage.setItem('history', JSON.stringify(this._history));
+    if(!this._history.includes(query)) {
+      this._history.unshift(query);
+      this._history = this._history.splice(0,10);
+      localStorage.setItem('history', JSON.stringify(this._history));
+    }
     
     this.httpClient.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10'`)
       .subscribe( (response: SearchGifsResponse) => {
